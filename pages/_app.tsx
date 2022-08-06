@@ -2,10 +2,15 @@ import '../styles/globals.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import type { AppProps } from 'next/app'
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className="content pt-3">
+      <Head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>プリコネタロット</title>
+      </Head>
       <p className="fs-1 text-center">プリコネタロット</p>
       <Component {...pageProps} />
       <footer>
