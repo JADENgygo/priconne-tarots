@@ -12,7 +12,7 @@ export default function Document() {
         <meta property="og:title" content="プリコネタロット" />
         <meta property="og:description" content="プリコネRのタロット占い" />
         <meta property="og:url" content="https://priconne-tarots.vercel.app" />
-        <meta property="og:image" content="https://priconne-tarots.vercel.app/card.webp" />
+        <meta property="og:image" content="https://priconne-tarots.vercel.app/ogp_card.webp" />
         <link rel="icon" href="/peko.png" />
       </Head>
       <body>
