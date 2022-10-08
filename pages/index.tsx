@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { useRouter } from "next/router"
 
 const Home: NextPage = () => {
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
           shuffle(cards).map(e => {
             return (
               <div key={e} className="col">
-                <Image className="rounded" src="/card.png" width={1080} height={1920} onClick={() => augur(e)} />
+                <Image className="img-fluid rounded" src="/card.png" width={1080} height={1920} onClick={() => augur(e)} alt="tarot card" />
               </div>
             );
           })

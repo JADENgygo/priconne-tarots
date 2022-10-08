@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
+import Image from 'next/future/image'
 import { useRouter } from "next/router"
 import { useEffect, useState } from 'react'
 
@@ -121,9 +121,10 @@ const Result: NextPage = () => {
         state.name && (
           <div className="text-center">
             <p className="fw-bold">占い結果</p>
-            <Image style={{transform: `rotate(${state.position === "upright" ? "0" : "180"}deg)`}} src={"/" + state.name + ".webp"}
+            <Image className="img-fluid" style={{transform: `rotate(${state.position === "upright" ? "0" : "180"}deg)`}} src={"/" + state.name + ".webp"}
               width={sizes[state.name as keyof typeof sizes][0] / 2}
-              height={sizes[state.name as keyof typeof sizes][1] / 2} />
+              height={sizes[state.name as keyof typeof sizes][1] / 2}
+              alt="tarot card" />
             <p className="fw-bold">カードの名称</p>
             <p>{state.position === "upright" ? "正位置" : "逆位置"}の{results[state.name as keyof typeof results][0]}</p>
             <p className="fw-bold">意味</p>
@@ -133,7 +134,7 @@ const Result: NextPage = () => {
             <p>
               引用元: <a href="https://www.c-c-j.com/course/divination/tarot-reading/column/column01/">タロットカードの意味や種類を解説！初心者おすすめの占う方法もご紹介｜資格のキャリカレ</a>
             </p>
-            <button className="btn btn-dark" onClick={() => router.push("/")}>もう一度占う</button>
+            <button className="btn btn-outline-dark" onClick={() => router.push("/")}>もう一度占う</button>
           </div>
         )
       }
