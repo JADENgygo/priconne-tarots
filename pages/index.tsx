@@ -30,7 +30,7 @@ const Home: NextPage = () => {
           shuffle(cards).map(e => {
             return (
               <div key={e} className="col">
-                <Image className="img-fluid rounded" src="/card.png" width={1080} height={1920} onClick={() => augur(e)} alt="tarot card" />
+                <Image className="img-fluid rounded" src="/card.webp" width={1080} height={1920} onClick={() => augur(e)} alt="tarot card" />
               </div>
             );
           })
