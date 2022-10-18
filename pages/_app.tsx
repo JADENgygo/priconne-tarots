@@ -8,7 +8,7 @@ import { parseCookies, setCookie } from "nookies";
 import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"" | "light" | "dark">("");
   const router = useRouter();
   useEffect(() => {
     const cookie = parseCookies();
@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div className="content pt-1">
         <header className="container">
-          <div className="text-end mb-3">
+          <div className={`text-end mb-3 ${theme === "" ? "invisible" : "visible"}`}>
             <span className="link" onClick={changeTheme}>ダークモード: { theme === "light" ? "オフ" : "オン" }</span>
           </div>
           <p className="fs-1 text-center">プリコネタロット</p>
