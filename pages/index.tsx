@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/future/image'
 import { useRouter } from "next/router"
+import { GetServerSideProps } from "next";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -41,3 +42,7 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return { props: {}};
+}

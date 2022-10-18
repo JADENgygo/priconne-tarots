@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/future/image'
 import { useRouter } from "next/router"
 import { useEffect, useState } from 'react'
+import { GetServerSideProps } from "next";
 
 const Result: NextPage = () => {
   const [state, setState] = useState({name: "", position: ""} as {name: string, position: string});
@@ -132,9 +133,9 @@ const Result: NextPage = () => {
               {results[state.name as keyof typeof results][state.position === "upright" ? 1 : 2]}
             </p>
             <p>
-              引用元: <a href="https://www.c-c-j.com/course/divination/tarot-reading/column/column01/">タロットカードの意味や種類を解説！初心者おすすめの占う方法もご紹介｜資格のキャリカレ</a>
+              引用元: <a className="link" href="https://www.c-c-j.com/course/divination/tarot-reading/column/column01/">タロットカードの意味や種類を解説！初心者おすすめの占う方法もご紹介｜資格のキャリカレ</a>
             </p>
-            <button className="btn btn-outline-dark" onClick={() => router.push("/")}>もう一度占う</button>
+            <button className="btn btn-primary" onClick={() => router.push("/")}>もう一度占う</button>
           </div>
         )
       }
@@ -143,3 +144,7 @@ const Result: NextPage = () => {
 }
 
 export default Result
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return { props: {}};
+}

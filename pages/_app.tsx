@@ -3,20 +3,25 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import '../styles/globals.scss';
 import type { AppProps } from 'next/app'
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { parseCookies, setCookie } from "nookies";
 import { useState, useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const router = useRouter();
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    setTheme(theme === "dark" ? "dark" : "light");
+    const cookie = parseCookies();
+    setTheme(cookie.theme === "dark" ? "dark" : "light");
   }, []);
 
   const changeTheme = () => {
-    document.querySelector('html')?.classList.toggle('dark');
-    const theme = localStorage.getItem('theme');
-    localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
-    setTheme(theme === "dark" ? "light" : "dark");
+    const cookie = parseCookies();
+    setCookie(null, "theme", cookie.theme === "dark" ? "light" : "dark", {
+      maxAge: 60 * 60 * 24 * 30 * 12 * 1,
+      path: "/"
+    });
+    router.reload();
   };
 
   return (
@@ -27,7 +32,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <div className="content pt-1">
         <header className="container">
-          <div className="text-end mb-3"><span className="link" onClick={changeTheme}>ダークモード: { theme === "light" ? "オフ" : "オン" }</span></div>
+          <div className="text-end mb-3">
+            <span className="link" onClick={changeTheme}>ダークモード: { theme === "light" ? "オフ" : "オン" }</span>
+          </div>
           <p className="fs-1 text-center">プリコネタロット</p>
         </header>
         <Component {...pageProps} />
